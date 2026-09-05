@@ -25,11 +25,13 @@ extension Int8: Scalar {}
 extension Int16: Scalar {}
 extension Int32: Scalar {}
 extension Int64: Scalar {}
+extension Int128: Scalar {}
 extension UInt: Scalar {}
 extension UInt8: Scalar {}
 extension UInt16: Scalar {}
 extension UInt32: Scalar {}
 extension UInt64: Scalar {}
+extension UInt128: Scalar {}
 extension Float: Scalar {}
 extension Double: Scalar {}
 
