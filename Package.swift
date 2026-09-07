@@ -13,8 +13,8 @@ let package = Package(
     ],
     products: [
         .library(name: "Magnitude", targets: ["Magnitude"]),
-        .library(name: "Magnitude Standard Library Integration", targets: ["Magnitude Standard Library Integration"]),
-        .library(name: "Magnitude Foundation Library Integration", targets: ["Magnitude Foundation Library Integration"]),
+
+        .library(name: "Magnitude Foundation Integration", targets: ["Magnitude Foundation Integration"]),
         .library(name: "Magnitude Test Support", targets: ["Magnitude Test Support"]),
     ],
     dependencies: [
@@ -31,20 +31,13 @@ let package = Package(
             ],
             path: "Sources/Magnitude"
         ),
+        
         .target(
-            name: "Magnitude Standard Library Integration",
+            name: "Magnitude Foundation Integration",
             dependencies: [
                 .target(name: "Magnitude"),
             ],
-            path: "Sources/Magnitude Standard Library Integration"
-        ),
-        .target(
-            name: "Magnitude Foundation Library Integration",
-            dependencies: [
-                .target(name: "Magnitude"),
-                .target(name: "Magnitude Standard Library Integration"),
-            ],
-            path: "Sources/Magnitude Foundation Library Integration"
+            path: "Sources/Magnitude Foundation Integration"
         ),
         .target(
             name: "Magnitude Test Support",
@@ -58,8 +51,7 @@ let package = Package(
             dependencies: [
                 .target(name: "Magnitude"),
                 .target(name: "Magnitude Test Support"),
-                .target(name: "Magnitude Standard Library Integration"),
-                .target(name: "Magnitude Foundation Library Integration"),
+                .target(name: "Magnitude Foundation Integration"),
             ],
             path: "Tests/Magnitude Tests"
         ),
