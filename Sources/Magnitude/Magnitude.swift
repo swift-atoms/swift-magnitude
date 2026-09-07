@@ -1,16 +1,16 @@
 public import Tagged
 
-/// A scalar that can be validated as a magnitude.
-///
-/// Conforming types must provide a lawful, stable `Comparable` order, a finite
-/// `zero`, truthful finiteness, and value semantics that cannot invalidate a
-/// `Magnitude` after construction.
+
+
+
+
+
 public protocol Scalar: Comparable {
     static var zero: Self { get }
     var isFinite: Bool { get }
 }
 
-/// A value that exposes an associated magnitude representation.
+
 public protocol Representable {
     associatedtype Magnitude
     var magnitude: Magnitude { get }
@@ -20,7 +20,7 @@ extension Scalar where Self: BinaryInteger {
     @inlinable public var isFinite: Bool { true }
 }
 
-/// A validated finite, nonnegative scalar value.
+
 public struct Magnitude<Storage: Scalar> {
     private let storage: Storage
 
