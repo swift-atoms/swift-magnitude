@@ -88,3 +88,31 @@ func `nested tagged projection retains every domain layer`() throws {
             )
     )
 }
+
+private struct EncodingScalar: Magnitude::Scalar, Encodable {
+    let value: Int
+    static var zero: Self { Self(value: 0) }
+    var isFinite: Bool { true }
+    static func < (lhs: Self, rhs: Self) -> Bool { lhs.value < rhs.value }
+}
+
+private struct DecodingScalar: Magnitude::Scalar, Decodable {
+    let value: Int
+    static var zero: Self { Self(value: 0) }
+    var isFinite: Bool { true }
+    static func < (lhs: Self, rhs: Self) -> Bool { lhs.value < rhs.value }
+}
+
+@Test func `Encoding and decoding support independent scalar conformances`() throws {
+    let source = try Magnitude(validating: EncodingScalar(value: 7))
+    let data = try JSONEncoder().encode(source)
+    let decoded = try JSONDecoder().decode(Magnitude<DecodingScalar>.self, from: data)
+    #expect(decoded.value.value == 7)
+}
+
+@Test func `Decode only scalar storage still validates the magnitude invariant`() {
+    let data = Data(#"{"value":-1}"#.utf8)
+    #expect(throws: DecodingError.self) {
+        try JSONDecoder().decode(Magnitude<DecodingScalar>.self, from: data)
+    }
+}
