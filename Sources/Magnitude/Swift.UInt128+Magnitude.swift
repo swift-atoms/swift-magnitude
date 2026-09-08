@@ -1,3 +1,3 @@
-public import Tagged
+import Tagged
 
 extension Swift.UInt128: Scalar {}

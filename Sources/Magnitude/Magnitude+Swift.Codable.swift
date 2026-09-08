@@ -1,4 +1,4 @@
-public import Tagged
+import Tagged
 
 #if !hasFeature(Embedded)
 extension Magnitude: Swift.Codable where Storage: Swift.Codable {
