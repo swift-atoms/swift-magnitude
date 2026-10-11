@@ -1,3 +1,3 @@
 import Tagged
 
-extension Swift.Int32: Scalar {}
+extension Swift::Int32: Scalar {}

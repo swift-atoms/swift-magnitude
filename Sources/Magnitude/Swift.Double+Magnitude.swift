@@ -1,3 +1,3 @@
 import Tagged
 
-extension Swift.Double: Scalar {}
+extension Swift::Double: Scalar {}

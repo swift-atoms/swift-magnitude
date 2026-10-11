@@ -1,3 +1,3 @@
 import Tagged
 
-extension Swift.UInt16: Scalar {}
+extension Swift::UInt16: Scalar {}

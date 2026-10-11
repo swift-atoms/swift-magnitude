@@ -91,6 +91,9 @@ func `nested tagged projection retains every domain layer`() throws {
 
 private struct EncodingScalar: Magnitude::Scalar, Encodable {
     let value: Int
+}
+
+extension EncodingScalar {
     static var zero: Self { Self(value: 0) }
     var isFinite: Bool { true }
     static func < (lhs: Self, rhs: Self) -> Bool { lhs.value < rhs.value }
@@ -98,6 +101,9 @@ private struct EncodingScalar: Magnitude::Scalar, Encodable {
 
 private struct DecodingScalar: Magnitude::Scalar, Decodable {
     let value: Int
+}
+
+extension DecodingScalar {
     static var zero: Self { Self(value: 0) }
     var isFinite: Bool { true }
     static func < (lhs: Self, rhs: Self) -> Bool { lhs.value < rhs.value }

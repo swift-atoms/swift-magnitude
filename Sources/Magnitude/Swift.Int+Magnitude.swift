@@ -1,3 +1,3 @@
 import Tagged
 
-extension Swift.Int: Scalar {}
+extension Swift::Int: Scalar {}

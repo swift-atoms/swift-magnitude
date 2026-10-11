@@ -1,3 +1,3 @@
 import Tagged
 
-extension Swift.Float: Scalar {}
+extension Swift::Float: Scalar {}

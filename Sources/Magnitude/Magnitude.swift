@@ -24,7 +24,7 @@ extension Scalar where Self: BinaryInteger {
 public struct Magnitude<Storage: Scalar> {
     private let storage: Storage
 
-    public enum Error: Swift.Error, Hashable, Sendable {
+    public enum Error: Swift::Error, Hashable, Sendable {
         case negative
         case nonfinite
     }
@@ -38,17 +38,20 @@ public struct Magnitude<Storage: Scalar> {
     private init(validated value: Storage) {
         storage = value
     }
+}
+
+extension Magnitude {
 
     public var value: Storage { storage }
 
     public static var zero: Self { Self(validated: .zero) }
 }
 
-extension Magnitude: Swift.Equatable {}
+extension Magnitude: Swift::Equatable {}
 
-extension Magnitude: Swift.Hashable where Storage: Swift.Hashable {}
+extension Magnitude: Swift::Hashable where Storage: Swift::Hashable {}
 
-extension Magnitude: Swift.Sendable where Storage: Swift.Sendable {}
+extension Magnitude: Swift::Sendable where Storage: Swift::Sendable {}
 
 extension Magnitude: Representable {
     public var magnitude: Self { self }

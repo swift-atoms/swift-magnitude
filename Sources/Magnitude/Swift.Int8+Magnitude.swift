@@ -1,3 +1,3 @@
 import Tagged
 
-extension Swift.Int8: Scalar {}
+extension Swift::Int8: Scalar {}
