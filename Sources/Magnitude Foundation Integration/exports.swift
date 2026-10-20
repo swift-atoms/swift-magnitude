@@ -1,2 +1,2 @@
-@_exported public import Magnitude
 import Foundation
+@_exported public import Magnitude

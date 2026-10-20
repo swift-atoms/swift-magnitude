@@ -1,15 +1,9 @@
 public import Tagged
 
-
-
-
-
-
 public protocol Scalar: Comparable {
     static var zero: Self { get }
     var isFinite: Bool { get }
 }
-
 
 public protocol Representable {
     associatedtype Magnitude
@@ -19,7 +13,6 @@ public protocol Representable {
 extension Scalar where Self: BinaryInteger {
     @inlinable public var isFinite: Bool { true }
 }
-
 
 public struct Magnitude<Storage: Scalar> {
     private let storage: Storage
