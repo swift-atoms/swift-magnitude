@@ -17,6 +17,11 @@ extension Scalar where Self: BinaryInteger {
 public struct Magnitude<Storage: Scalar> {
     private let storage: Storage
 
+    public enum Error: Swift::Error, Hashable, Sendable {
+        case negative
+        case nonfinite
+    }
+
     public init(validating value: Storage) throws(Error) {
         guard value.isFinite else { throw .nonfinite }
         guard value >= .zero else { throw .negative }
@@ -53,40 +58,4 @@ where Underlying: Representable, Tag: ~Copyable & ~Escapable {
     public var magnitude: Magnitude {
         Magnitude(_unchecked: underlying.magnitude)
     }
-}
-
-extension Magnitude {
-
-    public enum Error: Swift::Error, Hashable, Sendable {
-        case negative
-        case nonfinite
-    }
-}
-
-#if !hasFeature(Embedded)
-    extension Magnitude: Swift::Decodable where Storage: Swift::Decodable {
-        public init(from decoder: any Decoder) throws {
-            let container = try decoder.singleValueContainer()
-            let value = try container.decode(Storage.self)
-            do {
-                try self.init(validating: value)
-            } catch {
-                throw DecodingError.dataCorruptedError(
-                    in: container,
-                    debugDescription: "Magnitude must be finite and nonnegative"
-                )
-            }
-        }
-    }
-
-    extension Magnitude: Swift::Encodable where Storage: Swift::Encodable {
-        public func encode(to encoder: any Encoder) throws {
-            var container = encoder.singleValueContainer()
-            try container.encode(value)
-        }
-    }
-#endif
-
-extension Magnitude: Swift::Comparable {
-    public static func < (lhs: Self, rhs: Self) -> Bool { lhs.value < rhs.value }
 }
