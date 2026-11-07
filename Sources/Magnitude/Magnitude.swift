@@ -17,11 +17,6 @@ extension Scalar where Self: BinaryInteger {
 public struct Magnitude<Storage: Scalar> {
     private let storage: Storage
 
-    public enum Error: Swift::Error, Hashable, Sendable {
-        case negative
-        case nonfinite
-    }
-
     public init(validating value: Storage) throws(Error) {
         guard value.isFinite else { throw .nonfinite }
         guard value >= .zero else { throw .negative }
@@ -57,5 +52,13 @@ where Underlying: Representable, Tag: ~Copyable & ~Escapable {
     @inlinable
     public var magnitude: Magnitude {
         Magnitude(_unchecked: underlying.magnitude)
+    }
+}
+
+extension Magnitude {
+
+    public enum Error: Swift::Error, Hashable, Sendable {
+        case negative
+        case nonfinite
     }
 }
